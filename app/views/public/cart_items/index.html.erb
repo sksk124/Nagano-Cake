@@ -25,9 +25,9 @@
           <td><%= number_to_currency(cart_item.item.price * 1.1, unit: '', precision: 0, format: '%n円') %></td>
           <td>
             <%= form_tag(cart_item_path(cart_item), method: :patch) do %>
-        <%= number_field_tag "amount", cart_item.amount, min: 1, max: 99 %>
-        <%= submit_tag "更新", class: "btn btn-primary btn-sm" %>
-      <% end %>
+            <%= number_field_tag "cart_item[amount]", cart_item.amount, min: 1, max: 99 %>
+            <%= submit_tag "更新", class: "btn btn-primary btn-sm" %>
+            <% end %>
       </td>
           <td><%= number_to_currency(cart_item.item.price * 1.1 * cart_item.amount, unit: '', precision: 0, format: '%n円') %></td>
           <td>
