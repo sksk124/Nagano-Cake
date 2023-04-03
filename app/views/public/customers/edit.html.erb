@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <h3>会員情報編集</h3>
+    </div>
+    <div class="col-md-12">
+      <%= form_with(model: @customer, url: customers_my_page_path, method: :patch) do |f| %>
+        <table class="table table-bordered">
+          <tr>
+            <th>姓</th>
+            <td><%= f.text_field :last_name %></td>
+          </tr>
+          <tr>
+            <th>名</th>
+            <td><%= f.text_field :first_name %></td>
+          </tr>
+          <tr>
+            <th>姓カナ</th>
+            <td><%= f.text_field :last_name_kana %></td>
+          </tr>
+          <tr>
+            <th>名カナ</th>
+            <td><%= f.text_field :first_name_kana %></td>
+          </tr>
+          <tr>
+            <th>メールアドレス</th>
+            <td><%= f.email_field :email, size: "30%" %></td>
+          </tr>
+          <tr>
+            <th>郵便番号</th>
+            <td><%= f.text_field :postal_code %></td>
+          </tr>
+          <tr>
+            <th>住所</th>
+            <td><%= f.text_field :address, size: "80%" %></td>
+          </tr>
+          <tr>
+            <th>電話番号</th>
+            <td><%= f.text_field :telephone_number %></td>
+          </tr>
+        </table>
+        <%= f.submit "更新する", class: "btn btn-primary" %>
+
+        <%= link_to "退会", customers_unsubscribe_path, class: "btn btn-danger" %>
+
+
+      <% end %>
+    </div>
+  </div>
+</div>

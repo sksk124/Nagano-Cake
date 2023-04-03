@@ -1,0 +1,41 @@
+<div class="container">
+  <h1 class="text-center">商品一覧【管理者専用】</h1>
+  <div class="row justify-content-center">
+    <div class="col-md-12">
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="col-md-1">ジャンル</th>
+            <th class="col-md-2">商品画像</th>
+            <th class="col-md-2">商品名</th>
+            <th class="col-md-3">商品説明文</th>
+            <th class="col-md-1">価格</th>
+            <th class="col-md-1">在庫状況</th>
+            <th class="col-md-1"></th>
+            <th class="col-md-1"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @items.each do |item| %>
+            <tr>
+              <td><%= item.genre.name if item.genre.present? %></td>
+              <td>
+                <% if item.image.attached? %>
+                 <%= image_tag item.image, size: "150x150" %>
+                <% else %>
+                 <%= image_tag 'noimage_cake', size: "150x150" %>
+                <% end %>
+　　　　　　　</td>
+　　　　　　　<td><%= item.name %></td>
+              <td><%= item.introduction %></td>
+              <td><%= (item.price * 1.1).round %>円(税込)</td>
+              <td><%= item.is_active ? "販売中" : "売り切れ" %></td>
+              <td><%= link_to "編集", edit_admin_item_path(item) %></td>
+              <td><%= link_to "削除", admin_item_path(item), method: :delete, data: { confirm: "本当に削除しますか？" } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

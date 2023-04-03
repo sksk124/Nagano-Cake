@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8 text-center">
+      <h1>商品詳細</h1>
+
+      <div class="text-center">
+        <% if @item.image.attached? %>
+          <%= image_tag @item.image, size: "200x200" %>
+        <% else %>
+          <%= image_tag 'noimage_cake', size: "200x200" %>
+        <% end %>
+      </div>
+
+      <hr>
+
+      <div class="form-group">
+        <label for="genre">ジャンル</label>
+        <div style="border: 1px solid #ccc; padding: 10px;">
+        <% if @item.genre.present? %>
+          <p><%= @item.genre.name %></p>
+        <% else %>
+          <p>ジャンル未設定</p>
+        <% end %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="name">商品名</label>
+        <div style="border: 1px solid #ccc; padding: 10px;">
+        <p><%= @item.name %></p>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="introduction">商品説明</label>
+        <div style="border: 1px solid #ccc; padding: 10px;">
+        <p><%= @item.introduction %></p>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="price">価格</label>
+        <div style="border: 1px solid #ccc; padding: 10px;">
+        <p><%= @item.price %>円</p>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="is_active">販売状況</label>
+        <div style="border: 1px solid #ccc; padding: 10px;">
+        <p style="<%= @item.is_active ? 'color: green;' : 'color: red;' %>"><%= @item.is_active ? "販売中" : "売り切れ" %></p>
+        </div>
+      </div>
+
+      <%= link_to "戻る", admin_items_path, class: "btn btn-secondary" %>
+    </div>
+  </div>
+</div>

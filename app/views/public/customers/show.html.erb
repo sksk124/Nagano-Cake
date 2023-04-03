@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 text-center" style="margin-bottom: 10px;">
+      <h3>会員詳細情報</h3>
+    </div>
+    <div class="col-md-12">
+      <table class="table table-bordered">
+        <tr>
+          <th>姓</th>
+          <td><%= @customer.last_name %></td>
+        </tr>
+        <tr>
+          <th>名</th>
+          <td><%= @customer.first_name %></td>
+        </tr>
+        <tr>
+          <th>姓カナ</th>
+          <td><%= @customer.last_name_kana %></td>
+        </tr>
+        <tr>
+          <th>名カナ</th>
+          <td><%= @customer.first_name_kana %></td>
+        </tr>
+        <tr>
+          <th>メールアドレス</th>
+          <td><%= @customer.email %></td>
+        </tr>
+        <tr>
+          <th>郵便番号</th>
+          <td><%= @customer.postal_code %></td>
+        </tr>
+        <tr>
+          <th>住所</th>
+          <td><%= @customer.address %></td>
+        </tr>
+        <tr>
+          <th>電話番号</th>
+          <td><%= @customer.telephone_number %></td>
+        </tr>
+      </table>
+      <%= link_to "登録情報編集", customers_information_edit_path, class: "btn btn-primary" %>
+    </div>
+  </div>
+</div>

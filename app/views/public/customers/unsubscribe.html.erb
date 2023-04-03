@@ -1,0 +1,9 @@
+<div class="d-flex justify-content-center align-items-center border border-danger p-4">
+  <div class="text-center">
+    <h3>退会手続き</h3>
+    <%= form_with(url: customers_withdraw_path, method: :patch, local: true, data: { confirm: "本当に退会しますか？" }) do |form| %>
+      <%= form.submit "退会する", class: "btn btn-danger mt-3" %>
+      <%= link_to "キャンセル", customers_my_page_path, class: "btn btn-secondary mt-3 ml-3" %>
+    <% end %>
+  </div>
+</div>

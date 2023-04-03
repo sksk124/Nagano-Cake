@@ -1,0 +1,55 @@
+<div class="container">
+  <h1 class="text-center">商品編集画面【管理者専用】</h1>
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <%= form_with model: @item, url: admin_item_path(@item), method: :patch, local: true do |f| %>
+        <% if @item.errors.any? %>
+          <div class="alert alert-danger">
+            <ul>
+              <% @item.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="form-group">
+          <h5>商品画像</h5>
+          <%= f.file_field :image %>
+          <% if @item.image.attached? %>
+            <p>現在の商品画像:</p>
+            <%= image_tag @item.image, size: "150x150" %>
+          <% end %>
+        </div>
+        
+        <div class="form-group">
+         <h5>商品ジャンル</h5>
+          <%= f.select :genre_id, options_for_select(@genres.map{ |genre| [genre.name, genre.id] }, @item.genre_id), { include_blank: '選択してください' }, class: "form-control" %>
+        </div>
+        
+
+        <div class="form-group">
+          <h5>商品名</h5>
+          <%= f.text_field :name, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <h5>商品説明</h5>
+          <%= f.text_area :introduction, rows: 5, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <h5>価格</h5>
+          <%= f.number_field :price, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          販売ステータス
+          <%= f.check_box :is_active %>
+        </div>
+
+        <%= f.submit "更新する", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>

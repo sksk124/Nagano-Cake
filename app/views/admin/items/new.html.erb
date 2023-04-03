@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <h1 class="text-center mb-4">商品新規登録画面</h1>
+
+     <%= form_with(model: [:admin, @item], url: admin_items_path) do |f| %>
+
+        <div class="form-group">
+         <h4>商品ジャンル</h4>
+         <%= f.select :genre_id, options_for_select(@genres.map{ |genre| [genre.name, genre.id] }), { include_blank: '選択してください' }, { class: "form-control" } %>
+        </div>
+
+        <div class="form-group">
+         <h4>商品画像</h4>
+         <%= f.file_field :image, accept: "image/*", class: "form-control-file" %>
+        </div>
+
+        <div class="form-group">
+          <h4>商品名</h4>
+          <%= f.text_field :name, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <h4>商品説明文</h4>
+          <%= f.text_area :introduction, rows: 5, class: "form-control" %>
+        </div>
+
+         <div class="form-group">
+          <h4>商品価格（税抜き）</h4>
+          <%= f.number_field :price, class: "form-control" %>
+        </div>
+
+        <div class="form-group text-center">
+          <%= f.submit "登録する", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

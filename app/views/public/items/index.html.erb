@@ -1,0 +1,30 @@
+<div class="container">
+  <h2 class="my-4">商品一覧</h2>
+  <div class="row">
+    <% @items.each do |item| %>
+      <div class="col-md-3 mb-3">
+        <div class="card h-100">
+          <% if item.image.attached? %>
+           <%= link_to item_path(item) do %>
+            <%= image_tag item.image, class: "card-img-top", alt: item.name, style: "height: 200px; object-fit: contain;" %>
+           <% end %>
+          <% else %>
+           <%= link_to item_path(item) do %>
+            <%= image_tag 'noimage_cake', class: "card-img-top", alt: "No Image", style: "height: 200px; object-fit: contain;" %>
+           <% end %>
+          <% end %>
+          <div class="card-body">
+            <h5 class="card-title"><%= item.name %></h5>
+            <p class="card-text"><%= item.price %>円</p>
+            <% if item.is_active %>
+              <p class="text-success">販売中</p>
+            <% else %>
+              <p class="text-danger">売り切れ</p>
+            <% end %>
+
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
