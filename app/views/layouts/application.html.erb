@@ -20,32 +20,35 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <%= link_to "商品一覧", items_path, class: "nav-link" %>
-        </li>
-        <% if customer_signed_in? %>
-          <li class="nav-item">
-            <%= link_to "マイページ", customers_my_page_path(current_customer), class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link", data: { confirm: "ログアウトしますか？" } %>
-          </li>
-        <% elsif admin_signed_in? %>
-          <li class="nav-item">
-            <%= link_to "商品管理画面", admin_items_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link", data: { confirm: "ログアウトしますか？" } %>
-          </li>
-        <% else %>
-          <li class="nav-item">
-            <%= link_to "ログイン", new_customer_session_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "新規登録", new_customer_registration_path, class: "nav-link" %>
-          </li>
-        <% end %>
-      </ul>
+  <li class="nav-item">
+    <%= link_to "商品一覧", items_path, class: "nav-link" %>
+  </li>
+  <% if customer_signed_in? %>
+    <li class="nav-item">
+      <%= link_to "マイページ", customers_my_page_path(current_customer), class: "nav-link" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "カート", cart_items_path, class: "nav-link" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "nav-link", data: { confirm: "ログアウトしますか？" } %>
+    </li>
+  <% elsif admin_signed_in? %>
+    <li class="nav-item">
+      <%= link_to "商品管理画面", admin_items_path, class: "nav-link" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link", data: { confirm: "ログアウトしますか？" } %>
+    </li>
+  <% else %>
+    <li class="nav-item">
+      <%= link_to "ログイン", new_customer_session_path, class: "nav-link" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "新規登録", new_customer_registration_path, class: "nav-link" %>
+    </li>
+  <% end %>
+</ul>
     </div>
   </div>
 </nav>

@@ -26,11 +26,14 @@ namespace :admin do
   end
 
 
-  scope module: :public do
-    resources :customers, only: [:show, :edit, :update]
-    resources :items, only: [:index, :new, :create, :show, :edit, :update, :destroy]
-    delete '/cart_items/delete_all', to: 'cart_items#destroy_all', as: 'delete_all_cart_items'
-    resources :cart_items
+ scope module: :public do
+  resources :customers, only: [:show, :edit, :update]
+  resources :items, only: [:index, :new, :create, :show, :edit, :update, :destroy]
+  delete '/cart_items/delete_all', to: 'cart_items#destroy_all', as: 'delete_all_cart_items'
+  resources :cart_items
+  resources :orders do
+    post 'confirm', on: :new
   end
+ end
 
 end
