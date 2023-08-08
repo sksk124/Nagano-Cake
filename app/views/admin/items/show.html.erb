@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-8 text-center">
-      <h1>商品詳細</h1>
+      <h3>商品詳細</h3>
 
       <div class="text-center">
         <% if @item.image.attached? %>
@@ -32,16 +32,17 @@
       </div>
 
       <div class="form-group">
-        <label for="introduction">商品説明</label>
-        <div style="border: 1px solid #ccc; padding: 10px;">
-        <p><%= @item.introduction %></p>
+       <label for="introduction">商品説明</label>
+        <div style="border: 1px solid #ccc; padding: 10px;" class="text-left">
+         <p><%= @item.introduction %></p>
         </div>
-      </div>
+       </div>
+
 
       <div class="form-group">
         <label for="price">価格</label>
         <div style="border: 1px solid #ccc; padding: 10px;">
-        <p><%= @item.price %>円</p>
+        <p><%= number_with_delimiter(@item.price) %>円</p>
         </div>
       </div>
 

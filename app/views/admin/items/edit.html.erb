@@ -1,5 +1,5 @@
 <div class="container">
-  <h1 class="text-center">商品編集画面【管理者専用】</h1>
+  <h3 class="text-center">商品編集画面【管理者専用】</h3>
   <div class="row justify-content-center">
     <div class="col-md-6">
       <%= form_with model: @item, url: admin_item_path(@item), method: :patch, local: true do |f| %>
@@ -21,12 +21,12 @@
             <%= image_tag @item.image, size: "150x150" %>
           <% end %>
         </div>
-        
+
         <div class="form-group">
          <h5>商品ジャンル</h5>
           <%= f.select :genre_id, options_for_select(@genres.map{ |genre| [genre.name, genre.id] }, @item.genre_id), { include_blank: '選択してください' }, class: "form-control" %>
         </div>
-        
+
 
         <div class="form-group">
           <h5>商品名</h5>

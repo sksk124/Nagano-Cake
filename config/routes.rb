@@ -11,7 +11,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 
 get '/', to: 'public/homes#top', as: 'top'
 get '/about', to: 'public/homes#about'
-get '/admin', to: 'admin/homes#top'
+get '/admin', to: 'admin/homes#top', as: 'home'
 get '/customers/my_page', to: 'public/customers#show'
 get '/customers/information/edit', to: 'public/customers#edit'
 patch '/customers/my_page', to: 'public/customers#update'
@@ -23,6 +23,8 @@ namespace :admin do
     resources :items
     resources :customers
     resources :genres
+    resources :orders
+    resources :order_details
   end
 
 
@@ -31,9 +33,12 @@ namespace :admin do
   resources :items, only: [:index, :new, :create, :show, :edit, :update, :destroy]
   delete '/cart_items/delete_all', to: 'cart_items#destroy_all', as: 'delete_all_cart_items'
   resources :cart_items
-  resources :orders do
-    post 'confirm', on: :new
+  resources :orders  do
+   post 'confirm', on: :collection
+   get 'complete', on: :collection
+   delete 'destroy_all', on: :collection
   end
+  resources :addresses
  end
 
 end

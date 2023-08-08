@@ -1,21 +1,16 @@
 <div class="container">
-  <h1 class="text-center mb-5">顧客一覧</h1>
+  <h4 class="text-center mb-5">会員一覧</h4>
 
   <div class="row">
     <div class="col-md-12">
-      <table class="table">
+      <table class="table table-bordered">
         <thead>
           <tr>
-            <th>姓</th>
-            <th>名</th>
-            <th>姓カナ</th>
-            <th>名カナ</th>
-            <th>メールアドレス</th>
-            <th>郵便番号</th>
-            <th>住所</th>
+            <th>ID</th>
+            <th>名前</th>
+            <th>カナ</th>
             <th>電話番号</th>
             <th>会員ステータス</th>
-            <th></th>
             <th></th>
             <th></th>
           </tr>
@@ -23,16 +18,11 @@
         <tbody>
           <% @customers.each do |customer| %>
             <tr>
-              <td><%= customer.last_name %></td>
-              <td><%= customer.first_name %></td>
-              <td><%= customer.last_name_kana %></td>
-              <td><%= customer.first_name_kana %></td>
-              <td><%= customer.email %></td>
-              <td><%= customer.postal_code %></td>
-              <td><%= customer.address %></td>
+              <td><%= customer.id %></td>
+              <td><%= link_to "#{customer.last_name} #{customer.first_name}", admin_customer_path(customer) %></td>
+              <td><%= customer.last_name_kana + " " + customer.first_name_kana %></td>
               <td><%= customer.telephone_number %></td>
               <td><%= customer.is_deleted ? '退会済み' : '有効' %></td>
-              <td><%= link_to '詳細', admin_customer_path(customer), class: 'btn btn-primary btn-sm' %></td>
               <td><%= link_to '編集', edit_admin_customer_path(customer), class: 'btn btn-success btn-sm' %></td>
               <td><%= link_to '削除', admin_customer_path(customer), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger btn-sm' %></td>
             </tr>

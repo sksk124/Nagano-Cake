@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>注文番号</th>
+            <th>注文日時</th>
+            <th>合計金額</th>
+            <th>支払い方法</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% current_customer.orders.each do |order| %>
+            <tr>
+              <td><%= order.id %></td>
+              <td><%= order.created_at.strftime("%Y/%m/%d %H:%M:%S") %></td>
+              <td><%= number_with_delimiter(order.total_payment) %>円</td>
+              <td><%= order.payment_method_i18n %></td>
+              <td><%= link_to "詳細", order_path(order), class: "btn btn-primary" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

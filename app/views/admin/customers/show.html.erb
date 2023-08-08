@@ -1,35 +1,46 @@
-<h1><%= @customer.last_name %> <%= @customer.first_name %> さんの情報</h1>
-
-<table>
-  <tr>
-    <th>姓</th>
-    <td><%= @customer.last_name %></td>
-  </tr>
-  <tr>
-    <th>名</th>
-    <td><%= @customer.first_name %></td>
-  </tr>
-  <tr>
-    <th>姓カナ</th>
-    <td><%= @customer.last_name_kana %></td>
-  </tr>
-  <tr>
-    <th>名カナ</th>
-    <td><%= @customer.first_name_kana %></td>
-  </tr>
-  <tr>
-    <th>メールアドレス</th>
-    <td><%= @customer.email %></td>
-  </tr>
-  <tr>
-    <th>郵便番号</th>
-    <td><%= @customer.postal_code %></td>
-  </tr>
-  <tr>
-    <th>住所</th>
-    <td><%= @customer.address %></td>
-  </tr>
-  <tr>
-    <th>電話番号</th>
-    <td><%= @customer.telephone_number %></td>
-  </tr>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+      <h4><%= @customer.last_name %> <%= @customer.first_name %> さんの情報</h4>
+      <table class="table table-striped">
+        <tr>
+          <th>姓</th>
+          <td><%= @customer.last_name %></td>
+        </tr>
+        <tr>
+          <th>名</th>
+          <td><%= @customer.first_name %></td>
+        </tr>
+        <tr>
+          <th>姓カナ</th>
+          <td><%= @customer.last_name_kana %></td>
+        </tr>
+        <tr>
+          <th>名カナ</th>
+          <td><%= @customer.first_name_kana %></td>
+        </tr>
+        <tr>
+          <th>メールアドレス</th>
+          <td><%= @customer.email %></td>
+        </tr>
+        <tr>
+          <th>郵便番号</th>
+          <td><%= @customer.postal_code %></td>
+        </tr>
+        <tr>
+          <th>住所</th>
+          <td><%= @customer.address %></td>
+        </tr>
+        <tr>
+          <th>電話番号</th>
+          <td><%= @customer.telephone_number %></td>
+        </tr>
+        <tr>
+          <th>会員ステータス</th>
+          <td><%= @customer.is_deleted ? '退会済み' : '有効' %></td>
+        </tr>
+      </table>
+      <%= link_to '会員一覧に戻る', admin_customers_path, class: 'btn btn-secondary' %>
+    </div>
+  </div>
+</div>

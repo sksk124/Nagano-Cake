@@ -1,0 +1,62 @@
+<h1 class="mb-4">配送先一覧</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>宛名</th>
+      <th>郵便番号</th>
+      <th>住所</th>
+      <th>登録日時</th>
+      <th>更新日時</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @addresses.each do |address| %>
+      <tr>
+        <td><%= address.id %></td>
+        <td><%= address.name %></td>
+        <td><%= address.postal_code %></td>
+        <td><%= address.address %></td>
+        <td><%= address.created_at %></td>
+        <td><%= address.updated_at %></td>
+        <td><%= link_to "編集", edit_address_path(address), class: "btn btn-primary btn-sm" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h2 class="mt-5 mb-4">新しい配送先を追加</h2>
+<%= form_with(model: @address, local: true, class: "mb-4") do |form| %>
+  <% if @address.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <h4 class="alert-heading"><%= pluralize(@address.errors.count, "error") %> prohibited this address from being saved:</h4>
+
+      <ul>
+        <% @address.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :postal_code %>
+    <%= form.text_field :postal_code, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :address %>
+    <%= form.text_field :address, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.submit "追加", class: "btn btn-primary" %>
+  </div>
+<% end %>

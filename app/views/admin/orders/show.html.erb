@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <h3>注文詳細</h3>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>商品名</th>
+            <th>価格(税込)</th>
+            <th>数量</th>
+            <th>製造ステータス</th>
+            <th>注文ステータス</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @order.order_details.each do |order_detail| %>
+            <tr>
+              <td><%= order_detail.item.name %></td>
+              <td><%= number_with_delimiter((order_detail.price * 1.1).floor) %>円</td>
+              <td><%= order_detail.amount %></td>
+              <td><%= order_detail.making_status %></td>
+              <td><%= @order.status %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <div class="row">
+        <div class="col-md-6 border rounded p-3">
+          <h4>注文情報</h4>
+          <p>注文者名： <%= @order.name %></p>
+          <p>注文日時： <%= @order.created_at.strftime("%Y年%m月%d日 %H:%M:%S") %></p>
+          <p>配送先： <%= @order.address %></p>
+          <p>支払方法： <%= @order.payment_method_i18n %></p>
+        </div>
+        <div class="col-md-6">
+          <h4>お支払い金額</h4>
+          <table class="table table-bordered">
+            <tbody>
+              <tr>
+                <th>商品合計</th>
+                <td><%= number_with_delimiter((@order.subtotal * 1.1).floor) %>円</td>
+              </tr>
+              <tr>
+                <th>送料</th>
+                <td><%= number_with_delimiter(@order.shipping_cost) %>円</td>
+              </tr>
+              <tr>
+                <th>合計金額</th>
+                <td><%= number_with_delimiter(@order.total_payment) %>円</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

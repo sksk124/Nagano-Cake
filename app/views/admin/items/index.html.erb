@@ -1,8 +1,8 @@
 <div class="container">
-  <h1 class="text-center">商品一覧【管理者専用】</h1>
+  <h4 class="text-center">商品一覧【管理者専用】</h4><%= link_to '商品を新規登録する', new_admin_item_path, class: 'btn btn-primary' %>
   <div class="row justify-content-center">
     <div class="col-md-12">
-      <table class="table">
+      <table class="table table-bordered">
         <thead>
           <tr>
             <th class="col-md-1">ジャンル</th>
@@ -21,17 +21,17 @@
               <td><%= item.genre.name if item.genre.present? %></td>
               <td>
                 <% if item.image.attached? %>
-                 <%= image_tag item.image, size: "150x150" %>
+                 <%= link_to image_tag(item.image, size: "150x150"), admin_item_path(item) %>
                 <% else %>
-                 <%= image_tag 'noimage_cake', size: "150x150" %>
+                 <%= link_to image_tag('noimage_cake', size: "150x150"), admin_item_path(item) %>
                 <% end %>
 　　　　　　　</td>
 　　　　　　　<td><%= item.name %></td>
               <td><%= item.introduction %></td>
-              <td><%= (item.price * 1.1).round %>円(税込)</td>
+              <td><%= number_with_delimiter((item.price * 1.1).round, delimiter: ',') %>円(税込)</td>
               <td><%= item.is_active ? "販売中" : "売り切れ" %></td>
-              <td><%= link_to "編集", edit_admin_item_path(item) %></td>
-              <td><%= link_to "削除", admin_item_path(item), method: :delete, data: { confirm: "本当に削除しますか？" } %></td>
+              <td><%= link_to "編集", edit_admin_item_path(item), class: "btn btn-primary" %></td>
+              <td><%= button_to "削除", admin_item_path(item), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %></td>
             </tr>
           <% end %>
         </tbody>

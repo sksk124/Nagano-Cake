@@ -1,0 +1,29 @@
+<h4 class="text-center mb-5">注文履歴一覧</h4>
+<div class="table-responsive" style="max-width: 1200px; margin: 0 auto;">
+  <table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>注文番号</th>
+      <th>購入者名</th>
+      <th>注文日時</th>
+      <th>注文個数</th>
+      <th>注文金額</th>
+      <th>注文ステータス</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @orders.each do |order| %>
+      <tr>
+        <td><%= order.id %></td>
+        <td><%= order.name %></td>
+        <td><%= order.created_at.strftime("%Y/%m/%d %H:%M:%S") %></td>
+        <td><%= order.total_items %></td>
+        <td><%= number_with_delimiter(order.total_payment) %>円</td>
+        <td><%= order.status_i18n %></td>
+        <td><%= link_to "詳細", admin_order_path(order), class: "btn btn-primary" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>

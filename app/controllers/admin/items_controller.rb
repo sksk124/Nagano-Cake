@@ -20,8 +20,8 @@ class Admin::ItemsController < ApplicationController
   end
 
   def create
-   @item = Item.new(item_params)
-   @item.image_id.attach(params[:item][:image]) # 画像をアタッチする
+    @item = Item.new(item_params)
+    @item.image_id = params[:item][:image] # 画像をアタッチする前に、image_idを初期化する
    if @item.save
     redirect_to admin_item_path(@item)
    else
